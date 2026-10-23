@@ -1,0 +1,15 @@
+CONVITE POKÉMON — MARCOS ANDRÉ | CONFIRMAÇÃO VIA GOOGLE SHEETS
+
+1. Acesse seu repositório no GitHub.
+2. Substitua o index.html na raiz pelo index.html deste pacote e faça Commit changes.
+3. Aguarde a atualização do GitHub Pages e abra o convite publicado.
+4. Toque em Quero participar, preencha nome, adultos e crianças, aceite o consentimento.
+5. Envie: abrirá nova aba com resposta do Apps Script. OK significa que a execução retornou sucesso; ERRO indica falha.
+6. Confira também a aba Confirmacoes da sua planilha Google.
+7. Apague a linha de teste da planilha depois da validação.
+
+Atenção: o envio depende do Apps Script estar publicado como aplicativo web, executando como proprietário, disponível a qualquer pessoa.
+O Apps Script deve ter doPost(e), ler e.parameter.nome, e.parameter.adultos e e.parameter.criancas, e escrever na aba Confirmacoes.
+A integração não foi testada com envio real; nenhum dado de teste foi enviado à sua planilha.
+O formulário é público: sem proteções adicionais do lado do servidor, visitantes podem enviar registros repetidos ou abusivos.
+Evite compartilhar a planilha publicamente.
