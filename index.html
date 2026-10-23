@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 
+<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Aniversário Marcos André</title>
+<title>Marcos André • Convite Pokémon</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Press+Start+2P&display=swap');
 
@@ -378,7 +380,10 @@ footer {
   }
 }
 
-.mission .main-button{display:inline-flex;align-items:center;justify-content:center;background:#173f75;color:white;border:2px solid white;text-decoration:none;box-shadow:0 6px 0 #0a2a50;margin-top:8px}.mission .main-button:hover{box-shadow:0 10px 0 #0a2a50}.detail-card small{font-size:12px}.section.details .section-intro{color:#5b6880;font-weight:700}.hero .date-banner{position:relative;z-index:2;margin:8px 0 8px;padding:10px 20px;border:1px solid #ffffff55;border-radius:50px;background:#ffffff16;color:#fff;font-weight:900;font-size:13px}.detail-card p{font-weight:800}.pokemon-card{cursor:pointer}</style>
+.mission .main-button{display:inline-flex;align-items:center;justify-content:center;background:#173f75;color:white;border:2px solid white;text-decoration:none;box-shadow:0 6px 0 #0a2a50;margin-top:8px}.mission .main-button:hover{box-shadow:0 10px 0 #0a2a50}.detail-card small{font-size:12px}.section.details .section-intro{color:#5b6880;font-weight:700}.hero .date-banner{position:relative;z-index:2;margin:8px 0 8px;padding:10px 20px;border:1px solid #ffffff55;border-radius:50px;background:#ffffff16;color:#fff;font-weight:900;font-size:13px}.detail-card p{font-weight:800}.pokemon-card{cursor:pointer}
+.pokemon-card summary{list-style:none;cursor:pointer}.pokemon-card summary::-webkit-details-marker{display:none}.pokemon-card[open]{border-color:#ffcb05;background:#ffffff20}.pokemon-extra{border-top:1px solid #ffffff45;padding-top:15px;margin-top:14px!important}.pokemon-card{cursor:default}
+</style>
+<meta content="convite-pokemon-limpo-v2" name="site-version"/>
 </head>
 <body>
 <header class="hero">
@@ -390,9 +395,9 @@ footer {
     Você foi convocado para comemorar os <strong>11 anos</strong> do Marcos!
   </p>
 <img alt="Pikachu" class="pikachu" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"/>
-<button class="main-button" onclick="document.querySelector('#detalhes').scrollIntoView()">
+<a class="main-button" href="#detalhes">
     Ver detalhes da missão
-  </button>
+  </a>
 </header>
 <section class="section details" id="detalhes">
 <h2>Uma aventura especial!</h2>
@@ -422,21 +427,21 @@ footer {
     Clique em um deles para descobrir sua especialidade.
   </p>
 <div class="pokemon-grid">
-<article class="pokemon-card" onclick="showPokemon('Pikachu', 'Tipo elétrico', 'Pikachu usa sua energia elétrica para iluminar qualquer aventura!')">
+<details class="pokemon-card"><summary>
 <img alt="Pikachu" loading="lazy" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"/>
 <h3>Pikachu</h3>
 <p>Tipo elétrico</p>
-</article>
-<article class="pokemon-card" onclick="showPokemon('Bulbasaur', 'Tipo planta e veneno', 'Bulbasaur é um parceiro leal que cresce junto com seu treinador!')">
+</summary><p class="pokemon-extra">Sua energia elétrica ilumina qualquer aventura!</p></details>
+<details class="pokemon-card"><summary>
 <img alt="Bulbasaur" loading="lazy" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"/>
 <h3>Bulbasaur</h3>
 <p>Tipo planta</p>
-</article>
-<article class="pokemon-card" onclick="showPokemon('Charmander', 'Tipo fogo', 'Charmander tem um espírito corajoso e está sempre pronto para novos desafios!')">
+</summary><p class="pokemon-extra">Um parceiro leal que cresce junto com o treinador!</p></details>
+<details class="pokemon-card"><summary>
 <img alt="Charmander" loading="lazy" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"/>
 <h3>Charmander</h3>
 <p>Tipo fogo</p>
-</article>
+</summary><p class="pokemon-extra">Coragem e muito entusiasmo para a missão!</p></details>
 </div>
 </section>
 <section class="mission"><h2>Missão Pokémon: diversão garantida! ⚡</h2><p>Marcos André está chegando ao nível 11! Prepare-se para uma tarde de saltos, aventuras e muita alegria no Air Jump!</p><a class="main-button" href="https://www.google.com/maps/search/?api=1&amp;query=Air%20Jump%20Shopping%20Del%20Rey%20Belo%20Horizonte" rel="noopener noreferrer" target="_blank">📍 Como chegar à festa</a></section>
@@ -444,50 +449,7 @@ footer {
 <p>Uma aventura Pokémon para comemorar os 11 anos de Marcos André.</p>
 <p>Prepare suas Poké Bolas e venha se divertir!</p>
 </footer>
-<div aria-labelledby="pokemonTitle" aria-modal="true" class="modal" id="pokemonModal" role="dialog">
-<div class="modal-box">
-<h2 id="pokemonTitle">Pokémon</h2>
-<p id="pokemonType"></p>
-<p id="pokemonDescription"></p>
-<div class="modal-buttons">
-<button class="close" onclick="closePokemon()">Voltar à aventura</button>
-</div>
-</div>
-</div>
 
 
-<script>
-function showPokemon(name, type, description) {
-  document.getElementById('pokemonTitle').textContent = name;
-  document.getElementById('pokemonType').textContent = type;
-  document.getElementById('pokemonDescription').textContent = description;
-  document.getElementById('pokemonModal').classList.add('show');
-}
-function closePokemon() {
-  document.getElementById('pokemonModal').classList.remove('show');
-}
-document.querySelectorAll('.modal').forEach(modal => {
-  modal.addEventListener('click', event => {
-    if (event.target === modal) modal.classList.remove('show');
-  });
-});
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') closePokemon();
-});
-const revealObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {threshold: .12}) : null;
-document.querySelectorAll('.detail-card, .pokemon-card').forEach(element => {
-  if (revealObserver) {
-    element.classList.add('hidden-reveal');
-    revealObserver.observe(element);
-  }
-});
-</script>
 </body>
 </html>
