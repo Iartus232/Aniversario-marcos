@@ -382,6 +382,19 @@ footer {
 
 .mission .main-button{display:inline-flex;align-items:center;justify-content:center;background:#173f75;color:white;border:2px solid white;text-decoration:none;box-shadow:0 6px 0 #0a2a50;margin-top:8px}.mission .main-button:hover{box-shadow:0 10px 0 #0a2a50}.detail-card small{font-size:12px}.section.details .section-intro{color:#5b6880;font-weight:700}.hero .date-banner{position:relative;z-index:2;margin:8px 0 8px;padding:10px 20px;border:1px solid #ffffff55;border-radius:50px;background:#ffffff16;color:#fff;font-weight:900;font-size:13px}.detail-card p{font-weight:800}.pokemon-card{cursor:pointer}
 .pokemon-card summary{list-style:none;cursor:pointer}.pokemon-card summary::-webkit-details-marker{display:none}.pokemon-card[open]{border-color:#ffcb05;background:#ffffff20}.pokemon-extra{border-top:1px solid #ffffff45;padding-top:15px;margin-top:14px!important}.pokemon-card{cursor:default}
+
+/* Confirmação opcional por WhatsApp: sem armazenamento de dados no site */
+.whatsapp-section{padding:74px 20px;background:linear-gradient(145deg,#102b50,#153c67);text-align:center}
+.whatsapp-box{max-width:610px;margin:auto;border:1px solid #ffffff38;border-radius:28px;padding:32px 25px;background:#ffffff10;box-shadow:0 20px 50px #0002}
+.whatsapp-box h2{color:#ffcb05;font-size:clamp(27px,5vw,39px);margin:0 0 12px}.whatsapp-box>p{line-height:1.65;color:#dceaff}
+.whatsapp-form{display:grid;gap:16px;margin-top:22px;text-align:left}.whatsapp-form label{display:grid;gap:7px;color:white;font-weight:900;font-size:14px}
+.whatsapp-form input{font:inherit;width:100%;padding:14px 16px;border:2px solid #cad8ed;border-radius:13px;color:#173f75;background:white}
+.whatsapp-form input:focus{outline:3px solid #ffcb0599;border-color:#ffcb05}
+.whatsapp-form .row-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.whatsapp-form button{background:#25d366;color:#073923;border:0;border-radius:16px;padding:17px 15px;font:900 16px Nunito,sans-serif;cursor:pointer;box-shadow:0 6px 0 #0d8a43;transition:transform .2s}.whatsapp-form button:hover{transform:translateY(-3px)}
+.whatsapp-feedback{min-height:24px;text-align:center;color:#ffe28b;font-weight:800;font-size:13px}
+.whatsapp-caption{font-size:12px!important;color:#b5c9e5!important}
+@media(max-width:420px){.whatsapp-form .row-fields{grid-template-columns:1fr}}
 </style>
 <meta content="convite-pokemon-limpo-v2" name="site-version"/>
 </head>
@@ -445,11 +458,48 @@ footer {
 </div>
 </section>
 <section class="mission"><h2>Missão Pokémon: diversão garantida! ⚡</h2><p>Marcos André está chegando ao nível 11! Prepare-se para uma tarde de saltos, aventuras e muita alegria no Air Jump!</p><a class="main-button" href="https://www.google.com/maps/search/?api=1&amp;query=Air%20Jump%20Shopping%20Del%20Rey%20Belo%20Horizonte" rel="noopener noreferrer" target="_blank">📍 Como chegar à festa</a></section>
+<section class="whatsapp-section" id="whatsapp">
+<div class="whatsapp-box">
+<h2>⚡ Confirme sua missão!</h2>
+<p>Você vem comemorar os 11 anos do Marcos André? Preencha os dados e envie sua resposta pelo WhatsApp!</p>
+<form class="whatsapp-form" id="whatsapp-form">
+<label for="responsavel">Nome do responsável<input id="responsavel" name="responsavel" type="text" maxlength="80" placeholder="Digite seu nome" autocomplete="name" required></label>
+<div class="row-fields">
+<label for="adultos">Adultos<input id="adultos" name="adultos" type="number" min="1" max="20" value="1" required></label>
+<label for="criancas">Crianças<input id="criancas" name="criancas" type="number" min="0" max="20" value="0" required></label>
+</div>
+<button type="submit">💬 ENVIAR PELO WHATSAPP</button>
+<div class="whatsapp-feedback" id="whatsapp-feedback" role="status" aria-live="polite"></div>
+</form>
+<p class="whatsapp-caption">O botão abre o WhatsApp com uma mensagem pronta. O envio só é concluído quando você tocar em enviar no aplicativo.</p>
+</div></section>
 <footer>
 <p>Uma aventura Pokémon para comemorar os 11 anos de Marcos André.</p>
 <p>Prepare suas Poké Bolas e venha se divertir!</p>
 </footer>
 
 
+<script>
+// CONFIGURE AQUI SEU WHATSAPP: DDI 55 + DDD + NUMERO, somente digitos.
+// Exemplo fictício: '5531999999999'. Não cole espaços, parênteses ou sinais.
+const WHATSAPP_DESTINO = '5531999363589';
+document.getElementById('whatsapp-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const nome = document.getElementById('responsavel').value.trim();
+  const adultos = Number(document.getElementById('adultos').value);
+  const criancas = Number(document.getElementById('criancas').value);
+  const feedback = document.getElementById('whatsapp-feedback');
+  if (!nome || !Number.isInteger(adultos) || !Number.isInteger(criancas) || adultos < 1 || adultos > 20 || criancas < 0 || criancas > 20 || adultos + criancas > 30) {
+    feedback.textContent = 'Confira seu nome e a quantidade de pessoas (até 30 no total).'; return;
+  }
+  if (!/^55\d{10,11}$/.test(WHATSAPP_DESTINO)) {
+    feedback.textContent = 'O número do WhatsApp ainda não foi configurado. Avise o organizador.'; return;
+  }
+  const texto = `Olá! ⚡ Gostaria de confirmar minha presença no aniversário Pokémon do Marcos André, dia 15/11, das 14h às 18h, no Air Jump do Shopping Del Rey.\n\nResponsável: ${nome}\nAdultos: ${adultos}\nCrianças: ${criancas}\nTotal: ${adultos + criancas} pessoa(s).`;
+  const link = `https://wa.me/${WHATSAPP_DESTINO}?text=${encodeURIComponent(texto)}`;
+  feedback.textContent = 'Abrindo o WhatsApp. Confira e envie a mensagem para concluir.';
+  window.location.href = link;
+});
+</script>
 </body>
 </html>
